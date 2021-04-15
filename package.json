@@ -1,13 +1,7 @@
 {
-<<<<<<< HEAD
   "name": "daisuke",
   "version": "2.0.1",
-  "description": "",
-=======
-  "name": "gloomycluc",
-  "version": "2.0.0",
-  "description": "bot do servidor gic",
->>>>>>> origin/master
+  "description": "Daisuke",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,10 +12,7 @@
   "dependencies": {
     "canvas-senpai": "^1.0.0",
     "discord.js": "^12.5.1",
-<<<<<<< HEAD
     "discord.js-collector": "^1.8.9",
-=======
->>>>>>> origin/master
     "discord.js-pagination": "^1.0.3",
     "express": "^4.17.1",
     "got": "^11.8.2",

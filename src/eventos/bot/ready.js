@@ -1,23 +1,13 @@
 module.exports = async (bot, ready) => {
-<<<<<<< HEAD
   console.log(`Daisuke iniciado com sucesso!\nservidores: ${bot.guilds.cache.size}\nmembros: ${bot.users.cache.size}`);
-=======
-  console.log(`COMANDOS E EVENTOS LIGADOS!`);
-  console.log(`Bot foi iniciado com sucesso!`);
->>>>>>> origin/master
 
   const status = [
     "online",
   ]
 
   const atividades = [
-<<<<<<< HEAD
     [`use d!help para conhecer meus comandos`, "STREAMING"],
     [`encontrou bugs? reporte!`, "STREAMING"]
-=======
-    [`discord.gg/gloomyclub`, "PLAYING"],
-    [`G!help`, "PLAYING"]
->>>>>>> origin/master
   ]
 
   setInterval(async () => {
