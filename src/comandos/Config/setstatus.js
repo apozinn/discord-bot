@@ -1,6 +1,10 @@
 const Discord = require("discord.js")
 const db = require("quick.db")
+<<<<<<< HEAD
 const config = require('../../../config.json')
+=======
+const config = require('./config.json')
+>>>>>>> origin/master
 
 module.exports = {
     config: {
