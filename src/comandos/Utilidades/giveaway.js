@@ -6,7 +6,7 @@ module.exports = {
         name: "giveaway",
         aliases: ['sortear'],
         description: "comando de sortear",
-        usage: "giveaway"
+        usage: "d!giveaway"
     },
     run: async (bot, message, args) => {
       
@@ -18,18 +18,20 @@ module.exports = {
     let ganhadores = args[2]
     let prize = args.slice(3).join(" ");
     if (!prize) return message.channel.send(`**é necessário mencionar um prêmio - {chat} {duração} {ganhadores} {título}**`);
-    message.channel.send(`**Giveaway criado em ${channel}**`);
+    
+    message.channel.send(`**Sorteio criado em ${channel}**`);
+   
     let Embed = new MessageEmbed()
-      .setTitle(`🎉 | sorteio de ${prize}`)
+      .setTitle(`🎉 | Sorteio de ${prize}`)
          .setColor('#15226D')
-         .setDescription(`**duração:** ${duration} \n**ganhadores:** ${ganhadores}\n**hosted:** ${hosted}\n\nreaja com 🎉 para partipar`) 
+         .setDescription(`**Duração:** ${duration} \n**Ganhadores:** ${ganhadores}\n**Hosted:** ${hosted}\n\nReaja com 🎉 para partipar`) 
          .setFooter(`${message.guild.name}`, message.guild.iconURL({ format: "png" }))
       .setTimestamp(Date.now() + ms(args[1]))
     let m = await channel.send(Embed);
     m.react("🎉");
     setTimeout(() => {
       if (m.reactions.cache.get("🎉").count <= 1) {
-        message.channel.send(`Reactions: ${m.reactions.cache.get("🎉").count}`);
+        message.channel.send(`Reações: ${m.reactions.cache.get("🎉").count}`);
         return message.channel.send(
           `**Não há reações suficientes**`
         );
@@ -40,9 +42,9 @@ module.exports = {
         .random();
       
       const ganhador = new MessageEmbed()
-       .setTitle(`🎉 | ganhador do sorteio de ${prize}`)
+       .setTitle(`🎉 | Ganhador do sorteio de ${prize}`)
         .setColor('#15226D')
-        .setDescription(`\n**🎁 | ganhador:** ${winner}\n**👑 | hosted:** ${hosted}`)
+        .setDescription(`\n**🎁 | Ganhador:** ${winner}\n**👑 | Hosted:** ${hosted}`)
         .setFooter(`${message.guild.name}`, message.guild.iconURL({ format: "png" }))
         .setTimestamp()
         

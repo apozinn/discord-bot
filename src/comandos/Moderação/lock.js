@@ -5,7 +5,7 @@ module.exports = {
     name: "lock",
     aliases: ['trancar'],
     description: "chega um canal do servidor",
-    usage: "lock"
+    usage: "d!lock"
   },
   run: async (bot, message, args) => {
     if (!message.member.hasPermission("MANAGE_CHANNELS")) {

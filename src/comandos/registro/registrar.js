@@ -8,44 +8,109 @@ module.exports = {
         usage: "registrar {membro}"
 
     },
-    run: async (bot, message, args) => {
-        let membro = message.mentions.users.first()
+    run: async(bot, message, args) => {
+        let membro = message.mentions.users.first();
         let registrador = message.author;
+        let tagregistrado = message.guild.roles.cache.find(x => x.name === "Registrado");
 
-        if(!membro) {
-            const embed1 = new Discord.MessageEmbed()
-                .setColor('RANDOM')
-                .setDescription('mencione um membro!')
-            return message.channel.send(embed1)
+        if (!membro) {
+            return message.channel.send('É necessario que você mencione um membro a ser registrado.')
         }
+        if (tagregistrado) {
+            return message.channel.send('Não foi possivel encontrar a tag de registrado.')
+        }
+        if (message.mentions.users.first().bot) {
+            return message.channel.send('Não é possivel registrador um bot.')
+        }
+        if (membro.roles.cache.some(role => role.name === 'Registrado'))  {
+              return message.channel.send('Esse membro ja esta registrador!')
+            }
 
-        const embed2 = new Discord.MessageEmbed()
-            .setColor('RANDOM')
-            .setDescription(`1️⃣ <@&825198761013411840>\n2️⃣ <@&825198804004503592>\n3️⃣ <@&825198843339210782>`)
-        message.channel.send(embed2).then(msg => {
+        const embed1 = new Discord.MessageEmbed()
+            .setThumbnail(message.guild.iconURL({ format: "png" }))
+            .setColor('#15226D')
+            .setDescription(`Registrador: ${registrador}\nMembro: ${membro}\n\n1 - ${tag1}\n2 - ${tag2}\n3 - ${tag3}\n\nSe hover um erro ao carregar o registro, reaja com 🔁`)
+            .setFooter(`${message.guild.name}`, message.guild.iconURL({ format: "png" }))
+        
+            message.channel.send(embed1).then(msg => {
+            
+            msg.react("⬅")
             msg.react("1️⃣")
             msg.react("2️⃣")
             msg.react("3️⃣")
+            msg.react("✅")
 
             let filtro = (reaction, usuario) => reaction.emoji.name === "1️⃣" && usuario.id === message.author.id;
-            let coletor = msg.createReactionCollector(filtro, {max: 1})
-       
+            let coletor = msg.createReactionCollector(filtro, { max: 1 })
+
             coletor.on("collect", cp => {
-                  {
+                {
+                    membro.roles.add(role);
 
-            const role = message.guild.roles.cache.find  (role => role.name === 'registrado')
-            const member = message.mentions.members.first();
-                  member.roles.add(role);
+                    const embed2 = new Discord.MessageEmbed()
+                    .setThumbnail(message.guild.iconURL({ format: "png" }))
+                    .setColor('#15226D')
+                    .setDescription(`Registrador: ${registrador}\nMembro: ${membro}\n\n1 - ${tag1}\n2 - ${tag2}\n3 - ${tag3}\n\nSe hover um erro ao carregar o registro, reaja com 🔁`)
+                    .setFooter(`${message.guild.name}`, message.guild.iconURL({ format: "png" }))
+
+                    msg.edit(embed2)
+                    msg.react("⬅")
+                    msg.react("1️⃣")
+                    msg.react("2️⃣")
+                    msg.react("3️⃣")
+                    msg.react("➡") 
+                    msg.react("✅")
+                }
+            })
+            let filtro2 = (reaction, usuario) => reaction.emoji.name === "2️⃣" && usuario.id === message.author.id;
+            let coletor2 = msg.createReactionCollector(filtro2, { max: 1 })
+
+            coletor2.on("collect", cp => {
+                {
+
+                    membro.roles.add(role);
+
+                    const embed3 = new Discord.MessageEmbed()
+                    .setThumbnail(message.guild.iconURL({ format: "png" }))
+                    .setColor('#15226D')
+                    .setDescription(`Registrador: ${registrador}\nMembro: ${membro}\n\n1 - ${tag1}\n2 - ${tag2}\n3 - ${tag3}\n\nSe hover um erro ao carregar o registro, reaja com 🔁`)
+                    .setFooter(`${message.guild.name}`, message.guild.iconURL({ format: "png" }))
                     
-                      const embed3 = new Discord.MessageEmbed()
+                    msg.edit(embed3)
+                    msg.react("⬅")
+                    msg.react("1️⃣")
+                    msg.react("2️⃣")
+                    msg.react("3️⃣")
+                    msg.react("➡") 
+                    msg.react("✅")
+                }
+            })
+            let filtro3 = (reaction, usuario) => reaction.emoji.name === "3️⃣" && usuario.id === message.author.id;
+            let coletor3 = msg.createReactionCollector(filtro3, { max: 1 })
 
-                        .setTitle('aba 2')
-                        .setColor('RANDOM')
-                        .setDescription('aba 2 de registro')
-              msg.edit(embed3);
-                  }
-                })
+            coletor3.on("collect", cp => {
+                {
+
+                    const role = message.guild.roles.cache.find(role => role.name === 'registrado')
+                    const member = message.mentions.members.first();
+                    member.roles.add(role);
+
+                    const embed4 = new Discord.MessageEmbed()
+                    .setThumbnail(message.guild.iconURL({ format: "png" }))
+                    .setColor('#15226D')
+                    .setDescription(`Registrador: ${registrador}\nMembro: ${membro}\n\n1 - ${tag1}\n2 - ${tag2}\n3 - ${tag3}\n\nSe hover um erro ao carregar o registro, reaja com 🔁`)
+                    .setFooter(`${message.guild.name}`, message.guild.iconURL({ format: "png" }))
+
+                    msg.edit(embed4);
+                    msg.react("⬅")
+                    msg.react("1️⃣")
+                    msg.react("2️⃣")
+                    msg.react("3️⃣")
+                    msg.react("➡") 
+                    msg.react("✅")
+                }
+            })
         })
     }
-         
+
 }

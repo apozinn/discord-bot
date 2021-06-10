@@ -13,7 +13,7 @@ module.exports = {
     if(!message.member.hasPermission("ADMINISTRATOR")) {
       const embed1 = new Discord.MessageEmbed()
      .setColor('#15226D')
-    .setDescription('**⭕ | você não tem permissão para usar esse comando**')
+    .setDescription('**⭕ | Você não tem permissão para usar esse comando**')
       return message.channel.send(embed1)
     }
     
@@ -23,28 +23,28 @@ module.exports = {
     if(!user) {
       const embed2 = new Discord.MessageEmbed()
      .setColor('#15226D')
-    .setDescription('**⭕ | mencione o usuário a ser Advertido**')
+    .setDescription('**⭕ | Mencione o usuário a ser Advertido**')
       return message.channel.send(embed2)
     }
     
     if(message.mentions.users.first().bot) {
       const embed3 = new Discord.MessageEmbed()
      .setColor('#15226D')
-    .setDescription('**⭕ | não é possível dar uma advertência em um bot**')
+    .setDescription('**⭕ | Não é possível dar uma advertência em um bot**')
       return message.channel.send(embed3)
     }
     
     if(message.author.id === user.id) {
       const embed4 = new Discord.MessageEmbed()
      .setColor('#15226D')
-    .setDescription('**⭕ | não é possível dar uma advertência em você mesmo**')
+    .setDescription('**⭕ | Não é possível dar uma advertência em você mesmo**')
       return message.channel.send(embed4)
     }
     
     if(user.id === message.guild.owner.id) {
         const embed5 = new Discord.MessageEmbed()
        .setColor('#15226D')
-      .setDescription('**⭕ | este membro tem um cargo maior que o seu**')
+      .setDescription('**⭕ | Este membro tem um cargo maior que o seu**')
       return message.channel.send(embed5)
     }
     
@@ -53,7 +53,7 @@ module.exports = {
     if(!reason) {
      const embed6 = new Discord.MessageEmbed()
     .setColor('#15226D')
-   .setDescription('**⭕ | é necessário um motivo para a advertência**')
+   .setDescription('**⭕ | É necessário um motivo para a advertência**')
       return message.channel.send(embed6)
     }
     

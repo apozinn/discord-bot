@@ -5,7 +5,7 @@ module.exports = {
         name: "ban",
         aliases: ['banir'],
         description: "banir um usuário do servidorr",
-        usage: "{prefix}ban"
+        usage: "d!ban"
     },
     run: async (bot, message, args) => {
   
@@ -15,36 +15,36 @@ module.exports = {
     if (!membro) {
       const embed1 = new Discord.MessageEmbed()
       .setColor('#15226D')
-     .setDescription('**⭕ | mencione o usuário a ser banido**')
+     .setDescription('**⭕ | Mencione o usuário a ser banido**')
       return message.reply(embed1)} 
     
     if(membro === message.member) {
       const embed2 = new Discord.MessageEmbed()
      .setColor('#15226D')
-    .setDescription('**⭕ | não é possível banir você mesmo**')
+    .setDescription('**⭕ | Não é possível banir você mesmo**')
       return message.reply(embed2)} 
  
     let motivo = args.slice(1).join(" ");
     if(!motivo) {
      const embed3 = new Discord.MessageEmbed()
             .setColor('#15226D')
-            .setDescription('**⭕ | é necessário mencionar um motivo para o ban**')
+            .setDescription('**⭕ | É necessário mencionar um motivo para o ban**')
       return message.channel.send(embed3)} 
     if (!message.member.hasPermission("BAN_MEMBERS")) return message.reply(``)
     
     if(!message.member.hasPermission("BAN_MEMBERS")) {
      const embed4 = new Discord.MessageEmbed()
        .setColor('#15226D')
-       .setDescription('**⭕ | você não tem permissão para banir membros**')
+       .setDescription('**⭕ | Você não tem permissão para banir membros**')
       return message.channel.send()} 
     
-    if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('**eu não tenho permissão pra banir um membro.**')
+    if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send('**Eu não tenho permissão pra banir um membro.**')
  
       const embed5 = new Discord.MessageEmbed()
        .setTitle('⚠ | Confirme o banimento')
        .setColor('#15226D')
-       .addField('• deseja banir o usuário abaixo?', `${membro}`)
-       .addField('• motivo:', `\`${motivo}\``)
+       .addField('• Deseja banir o usuário abaixo?', `${membro}`)
+       .addField('• Motivo:', `\`${motivo}\``)
        .setFooter(`requisitado por: ${message.author.tag}`, message.author.displayAvatarURL({ format: "png" }));
  
         message.channel.send(embed5).then(msg => {
@@ -56,12 +56,12 @@ module.exports = {
       coletor.on("collect", cp => {
             cp.remove(message.author.id); {
        let embed6 = new Discord.MessageEmbed()
-           .setTitle('⚠ | membro ban')
+           .setTitle('⚠ | Membro ban')
            .setColor('#15226D')
            .setThumbnail(message.author.displayAvatarURL({ format: "png" }))
-           .addField('👤 | Usuário banido:', `*• tag:* ${message.mentions.users.first().tag}\n\`(${membro.id})\``)
-           .addField('👤 | banido por:', `*• tag:* ${user.tag}\n\`(${user.id})\``)
-           .addField('✏ | motivo:', `**${motivo}**`) 
+           .addField('👤 | Usuário banido:', `*• Tag:* ${message.mentions.users.first().tag}\n\`(${membro.id})\``)
+           .addField('👤 | Banido por:', `*• Tag:* ${user.tag}\n\`(${user.id})\``)
+           .addField('✏ | Motivo:', `**${motivo}**`) 
            .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({format: "png"}))
            .setTimestamp()
         message.channel.send(embed6);

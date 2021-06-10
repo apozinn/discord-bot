@@ -15,7 +15,7 @@ module.exports = {
       
       const embed1 = new Discord.MessageEmbed()
      .setColor('#15226D')
-    .setDescription('**⭕ | é uma mensagem para ser enviada como sugestão**')
+     .setDescription('**⭕ | É necessario uma mensagem para ser enviada como sugestão**')
       return message.channel.send(embed1)
     }
     
@@ -23,16 +23,19 @@ module.exports = {
     
     
     if(!channel) {
-      return message.channel.send("**não foi possível encontrar um canal de sugestões**")
+      const embed70 = new Discord.MessageEmbed()
+      .setColor('#15226D')
+      .setDescription('**⭕ | Não foi possivel encontrar o canal de sugestões**')
+       return message.channel.send(embed70)
     }
                                                     
     
           let embed2 = new Discord.MessageEmbed()
-          .setTitle('⚡ nova sugestão!')
+          .setTitle('⚡ Nova sugestão!')
           .setThumbnail(message.author.avatarURL())
           .setColor("#01F1F9")
-          .addField(`💡 sugestão:`, `${suggest}`)
-          .addField(`💁 enviada por:`, `\`${user.tag}\``)
+          .addField(`💡 Sugestão:`, `${suggest}`)
+          .addField(`💁 Enviada Por:`, `\`${user.tag}\``)
           .setFooter(`${user.username}`, message.author.displayAvatarURL({format: "png"}))
            .setTimestamp()
     
@@ -43,13 +46,9 @@ module.exports = {
     }).catch(err => {})
     
     
-    let sugestao = new Discord.MessageEmbed()
-    .setColor('#15226D')
-    .setDescription(`**sua sugestão foi enviada em ${channel}**`)
-    
-    
-    message.channel.send(sugestao).then(msg => {
-      msg.delete({timeout: 500})
+    message.channel.send(`${message.author} **Sua sugestão foi enviada com sucesso em ${channel}**`).then(msg => {
+      msg.delete({timeout: 5000})
+      message.delete()
     })
     
   }

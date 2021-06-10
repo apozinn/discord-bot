@@ -5,17 +5,17 @@ module.exports = {
       name: "mute",
       aliases: ['mutar'],
       description: "mute um membro do servidor",
-      usage: "{prefix}mute"
+      usage: "d!mute"
     },
     run: async (bot, message, args) => {    if (!message.member.hasPermission("MANAGE_ROLES")) {
       const embed1 = new MessageEmbed()
      .setColor('#15226D')
-    .setDescription('**⭕ | você não tem permissão para mutar um usuário**')
+    .setDescription('**⭕ | Você não tem permissão para mutar um usuário**')
       return message.channel.send(embed1);
     }
 
     if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
-      return message.channel.send("**eu não tenho permissão de gerenciar cargos**");
+      return message.channel.send("**Eu não tenho permissão para mutar membros**");
     }
 
     const user = message.mentions.members.first();
@@ -23,14 +23,14 @@ module.exports = {
     if(!user) {
       const embed2 = new MessageEmbed()
      .setColor('#15226D')
-    .setDescription('**⭕ | mencione o membro a ser mutado**')
+    .setDescription('**⭕ | Mencione o membro a ser mutado**')
       return message.channel.send(embed2)
     }
     
     if(user.id === message.author.id) {
     const embed3 = new MessageEmbed()
    .setColor('#15226D')
-  .setDescription('**⭕ | não é possível mutar você mesmo**')
+  .setDescription('**⭕ | Não é possível mutar você mesmo**')
       return message.channel.send(embed3);
     }
     
@@ -41,7 +41,7 @@ module.exports = {
     if(!motivo) {
       const embed4 = new MessageEmbed()
      .setColor('#15226D')
-    .setDescription('**⭕ | é necessário mencionar um motivo para o mute**')
+    .setDescription('**⭕ | É necessário mencionar um motivo para o mute**')
       return message.channel.send(embed4)
     }
     
@@ -50,17 +50,19 @@ module.exports = {
     
     
       if(!muterole) {
-        const embed5 = new MessageEmbed()
-       .setColor('#15226D')
-     .setDescription('**⭕ | não foi possível encontrar a tag de mute, crie uma tag {Mutado}**')
-      return message.channel.send(embed5)
+      message.guild.roles.create({
+        data: {
+          name: 'Mutado',
+          color: null,
+      }
+      }).then(console.log).catch(console.error)
     }
     
     
    if(user.roles.cache.has(muterole)) {
     const embed6 = new MessageEmbed()
    .setColor('#15226D')
-  .setDescription('**⭕ | esse membro já está mutado**')
+  .setDescription('**⭕ | Esse membro já está mutado**')
       return message.channel.send(embed6)
     }
     

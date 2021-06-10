@@ -5,19 +5,19 @@ module.exports = {
       name: "kick",
       aliases: ['kickar'],
       description: "kickar um membro",
-      usage: "{prefix}kick"
+      usage: "d!kick"
     },
     run: async (bot, message, args) => {
     
     if(!message.member.hasPermission("KICK_MEMBERS")) {
       const embed1 = new Discord.MessageEmbed()
         .setColor('#15226D')
-        .setDescription('**⭕ | você não tem permissão para kickar um usuário**')
+        .setDescription('**⭕ | Você não tem permissão para kickar um usuário**')
       return message.channel.send(embed1)
     }
     
     if(!message.guild.me.hasPermission("KICK_MEMBERS")) {
-      return message.channel.send(`${message.author.username}** eu não tenho permissão pra realizar esse comando**`)
+      return message.channel.send(`${message.author.username}**Eu não tenho permissão pra kickar membros!**`)
     }
     let user = message.author;
     let membro = message.mentions.members.first();
@@ -26,21 +26,21 @@ module.exports = {
     if(!membro) {
       const embed2 = new Discord.MessageEmbed() 
         .setColor('#15226D')
-        .setDescription('**⭕ | mencione o membro que deseja kickar**')
+        .setDescription('**⭕ | Mencione o membro que deseja kickar**')
       return message.channel.send(embed2)
     }
     
     if(membro.id === message.author.id) {
      const embed3 = new Discord.MessageEmbed()
        .setColor('#15226D')
-       .setDescription('**⭕ | não é possível kickar você mesmo**')
+       .setDescription('**⭕ | Não é possível kickar você mesmo**')
      return message.channel.send(embed3)
     }
     
   if(!motivo) {
    const embed4 = new Discord.MessageEmbed()
       .setColor('#15226D')
-      .setDescription('**⭕ | é necessário um motivo para o kick**')
+      .setDescription('**⭕ | É necessário um motivo para o kick**')
     return message.channel.send(embed4)
   }
     
@@ -48,8 +48,8 @@ module.exports = {
         .setTitle('⚠ | Membro kick')
         .setColor('#15226D')
         .setThumbnail(message.author.displayAvatarURL({format: "png"}))
-        .addField('👤 membro kickado:', `*• tag:* ${message.mentions.users.first().tag}\n*• ID:* \`(${membro.id})\``)
-        .addField('👤 kickado por:', `*• tag:* ${user.tag}\n*• ID:* \`(${user.id})\``)
+        .addField('👤 Membro kickado:', `*• Tag:* ${message.mentions.users.first().tag}\n*• ID:* \`(${membro.id})\``)
+        .addField('👤 kickado por:', `*• Tag:* ${user.tag}\n*• ID:* \`(${user.id})\``)
         .setFooter(`${message.author.tag}`, message.author.displayAvatarURL({format: "png"}))
         .setTimestamp()
     

@@ -10,8 +10,11 @@ module.exports = (bot) => {
 
         for (let file of events) {
             const event = require(`../eventos/${dirs}/${file}`);
-            let eventName = file.split(".")[0];
-            bot.on(eventName, event.bind(null, bot));
+            if (event.once) {
+                bot.once(event.name, (...args) => event.execute(...args, bot));
+            } else {
+                bot.on(event.name, (...args) => event.execute(...args, bot));
+            }
         };
     };
     readdirSync(`./src/eventos/`).forEach(x => load(x));

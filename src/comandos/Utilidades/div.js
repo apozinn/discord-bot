@@ -23,14 +23,11 @@ module.exports = {
                     userInviteCount += invite['uses'];
                 }
           const embed = new Discord.MessageEmbed()
-         .setTitle(`Nick: ${user.tag}`)
-         .setColor('#15226D')
-        .setThumbnail(message.author.displayAvatarURL({ format: "png"}))
-         .addField('🏆MEMBROS RECRUTADOS🏆:', `\`\`\`
-         # ${userInviteCount} membros \`\`\`
-         `)
-        .setFooter(`${message.guild.name}`, message. guild.iconURL({ format: "png" }))
-        .setTimestamp()
+          .setColor('#15226D')
+          .setThumbnail(message.guild.iconURL({ format: "png"}))
+          .addField(`Divulgações ${message.author.tag}`, `**Convidados:** ${userInviteCount}\n**Meus convites:**\n\n${invite.url}\n\n**Use d!divs para ver o rank geral**`)
+          .setFooter(`${message.guild.name}`, message.guild.iconURL({ format: "png" }))
+          .setTimestamp()
         
           message.channel.send(embed) 
               
